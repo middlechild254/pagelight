@@ -1,1 +1,699 @@
+<!doctype html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Pagelight — Read something that changes you</title>
+  <meta name="description"
+    content="Digital PDF books on love, wealth, mindset and power. Preview free, order in minutes via WhatsApp.">
+  <meta property="og:title" content="Read something that changes you">
+  <meta property="og:description" content="Affordable PDF books for young people building their lives.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Newsreader:ital,wght@0,400;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1021;
+      --s: #191b36;
+      --t: #f2f0fa;
+      --m: #a9a7c6;
+      --love: #ff6f91;
+      --wealth: #ffb84d;
+      --mindset: #5fe3b4;
+      --power: #9d8cff;
+      --r: 18px
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--t);
+      font: 400 1.05rem/1.6 Newsreader, Georgia, serif
+    }
+
+    h1,
+    h2,
+    h3,
+    .btn,
+    .logo,
+    .chip {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif
+    }
+
+    a {
+      color: inherit
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: auto;
+      padding: 72px 20px
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 14px 24px;
+      background: #0f1021cc;
+      backdrop-filter: blur(14px)
+    }
+
+    .nav nav {
+      display: flex;
+      gap: 20px;
+      margin-right: auto
+    }
+
+    .nav nav a {
+      text-decoration: none;
+      color: var(--m)
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.3rem;
+      text-decoration: none
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 99px;
+      padding: 13px 26px;
+      font-weight: 800;
+      font-size: 1rem;
+      background: var(--wealth);
+      color: #1a1300;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .15s
+    }
+
+    .btn:hover {
+      transform: translateY(-2px)
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--t);
+      box-shadow: inset 0 0 0 1.5px #ffffff40
+    }
+
+    .btn.wa {
+      background: #25d366;
+      color: #04230f
+    }
+
+    .btn:focus-visible,
+    .chip:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--power);
+      outline-offset: 2px
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 70px 20px;
+      min-height: 80vh
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 7vw, 5.6rem);
+      line-height: .95;
+      font-weight: 800;
+      letter-spacing: -.03em
+    }
+
+    .hero p {
+      color: var(--m);
+      font-size: 1.25rem;
+      margin: 22px 0 30px;
+      max-width: 30em
+    }
+
+    .shelf {
+      position: relative;
+      height: 440px
+    }
+
+    .cover {
+      --c: var(--power);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      aspect-ratio: 2/3;
+      padding: 16px;
+      border-radius: 6px 12px 12px 6px;
+      background: linear-gradient(150deg, var(--c), #0f1021 135%);
+      box-shadow: -6px 0 0 #00000030 inset, 0 18px 40px #0008;
+      font-family: 'Bricolage Grotesque', sans-serif
+    }
+
+    .cover b {
+      font-size: 1.1rem;
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 0 1px 8px #0006
+    }
+
+    .cover small {
+      color: #fff;
+      opacity: .85
+    }
+
+    .love {
+      --c: var(--love)
+    }
+
+    .wealth {
+      --c: var(--wealth)
+    }
+
+    .mindset {
+      --c: var(--mindset)
+    }
+
+    .power {
+      --c: var(--power)
+    }
+
+    .shelf .cover {
+      position: absolute;
+      width: 150px;
+      animation: float 7s ease-in-out infinite
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-14px)
+      }
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 24px;
+      letter-spacing: -.02em
+    }
+
+    .search input {
+      width: 100%;
+      padding: 16px 22px;
+      border-radius: 99px;
+      border: 1.5px solid #ffffff30;
+      background: var(--s);
+      color: var(--t);
+      font: inherit
+    }
+
+    .chips {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 18px 0 6px;
+      scrollbar-width: none
+    }
+
+    .chip {
+      flex: none;
+      border: 0;
+      border-radius: 99px;
+      padding: 10px 20px;
+      background: var(--s);
+      color: var(--t);
+      cursor: pointer
+    }
+
+    .chip[aria-pressed=true] {
+      background: var(--t);
+      color: var(--bg)
+    }
+
+    .small .chip {
+      font-size: .9rem;
+      padding: 7px 14px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 22px;
+      margin-top: 18px
+    }
+
+    .card {
+      background: var(--s);
+      border-radius: var(--r);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform .2s
+    }
+
+    .card:hover {
+      transform: translateY(-6px)
+    }
+
+    .card .cover {
+      width: 62%;
+      align-self: center;
+      cursor: pointer
+    }
+
+    .card h3 {
+      font-size: 1.15rem
+    }
+
+    .card p {
+      color: var(--m);
+      font-size: .95rem;
+      flex: 1
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: .9rem;
+      color: var(--m)
+    }
+
+    .price {
+      font: 800 1.25rem 'Bricolage Grotesque'
+    }
+
+    .price s {
+      color: var(--m);
+      font-weight: 500;
+      font-size: .9rem;
+      margin-left: 6px
+    }
+
+    .badge {
+      align-self: flex-start;
+      background: var(--love);
+      color: #2a0010;
+      border-radius: 99px;
+      padding: 2px 10px;
+      font: 800 .75rem 'Bricolage Grotesque'
+    }
+
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      color: var(--m);
+      padding: 40px
+    }
+
+    .quest {
+      text-align: center;
+      padding: 90px 20px;
+      background: var(--s)
+    }
+
+    .q {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-style: italic;
+      min-height: 3.2em;
+      transition: opacity .5s;
+      max-width: 18em;
+      margin: auto
+    }
+
+    .a {
+      color: var(--wealth);
+      font-size: 1.4rem;
+      margin: 12px 0 28px
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+      color: var(--m)
+    }
+
+    .stats b {
+      display: block;
+      font: 800 2.2rem 'Bricolage Grotesque';
+      color: var(--t)
+    }
+
+    .bundle {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 24px;
+      color: var(--m);
+      border-top: 1px solid #ffffff18
+    }
+
+    .wa-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 6;
+      background: #25d366;
+      color: #04230f;
+      border-radius: 99px;
+      padding: 12px 18px;
+      font: 800 .9rem 'Bricolage Grotesque';
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px #0006
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: #000a;
+      z-index: 8
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    .panel {
+      position: fixed;
+      z-index: 9;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: min(480px, 100%);
+      background: var(--s);
+      padding: 26px;
+      overflow: auto;
+      animation: in .25s
+    }
+
+    @keyframes in {
+      from {
+        transform: translateX(40px);
+        opacity: 0
+      }
+    }
+
+    .panel h2 {
+      font-size: 1.7rem
+    }
+
+    .panel .x {
+      float: right
+    }
+
+    .panel label {
+      display: block;
+      margin: 12px 0 4px;
+      color: var(--m);
+      font-size: .9rem
+    }
+
+    .panel input,
+    .panel textarea,
+    .panel select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1.5px solid #ffffff30;
+      background: var(--bg);
+      color: var(--t);
+      font: inherit
+    }
+
+    .panel .cover {
+      width: 150px;
+      margin: 0 auto 16px
+    }
+
+    .learn {
+      list-style: none;
+      padding: 0
+    }
+
+    .learn li:before {
+      content: "✓ ";
+      color: var(--mindset)
+    }
+
+    .page {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 10px 0
+    }
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 8px 0
+    }
+
+    .tot {
+      font: 800 1.3rem 'Bricolage Grotesque';
+      border-top: 1px solid #fff3;
+      padding-top: 12px;
+      margin: 14px 0
+    }
+
+    .err {
+      color: var(--love);
+      font-size: .9rem
+    }
+
+    @media(max-width:800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding-top: 30px
+      }
+
+      .shelf {
+        height: 300px
+      }
+
+      .shelf .cover {
+        width: 100px
+      }
+
+      .nav nav {
+        display: none
+      }
+
+      .nav {
+        justify-content: space-between
+      }
+
+      .wrap {
+        padding: 48px 16px
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav"><a class="logo" href="#top">Pagelight</a>
+    <nav><a href="#explore">Explore</a><a href="#why">Why read</a><a href="#bundle">Bundle</a></nav>
+    <button class="btn ghost" id="cartBtn">Cart <b id="cartCount">0</b></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Read something that changes you.</h1>
+        <p>You don't need another endless scroll. Discover digital books that change how you think, love, build wealth
+          and understand yourself.</p>
+        <div class="row"><a class="btn" href="#explore">Explore books</a><a class="btn ghost" href="#explore"
+            data-start>Start reading</a></div>
+      </div>
+      <div class="shelf" id="heroShelf" aria-hidden="true"></div>
+    </section>
+
+    <section id="explore" class="wrap">
+      <h2>What are you ready to learn?</h2>
+      <div class="search"><input id="q" type="search" placeholder="What do you want to learn today?"
+          aria-label="Search books"></div>
+      <div class="chips" id="cats"></div>
+      <div class="chips small" id="sorts"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="quest" id="why">
+      <p class="q" id="question"></p>
+      <p class="a">Maybe the answer is waiting inside a book.</p>
+      <a class="btn" href="#explore">Find your book</a>
+      <div class="stats">
+        <div><b>10 min</b>daily reading goal</div>
+        <div><b>1 book</b>one new perspective</div>
+        <div><b>365 days</b>a year of learning</div>
+      </div>
+    </section>
+
+    <section id="bundle" class="wrap bundle"></section>
+  </main>
+
+  <footer>
+    <p>Pagelight · Knowledge should be accessible.</p>
+    <p><a href="#" id="waFoot">WhatsApp us</a></p>
+  </footer>
+  <a class="wa-float" id="waFloat" aria-label="Chat on WhatsApp">WhatsApp</a>
+
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="panel" id="panel" hidden role="dialog" aria-modal="true"></aside>
+  <script>window.BOOKS = [
+      { "id": 1, "title": "Understanding Love", "author": "Amani Wekesa", "category": "love", "price": 350, "discount": 0, "shortDescription": "Why we love the way we do, and how to love better.", "description": "A practical guide to attachment, expectations and the patterns we carry into relationships.", "rating": 4.8, "readers": 1240, "tags": ["relationships", "emotional intelligence"], "featured": true, "newRelease": false, "pdf": "PRIVATE_STORAGE/understanding-love.pdf", "learn": ["Spot your attachment style", "Communicate needs without blame", "Choose partners deliberately", "Heal old patterns"], "preview": ["Introduction: Nobody taught us this.", "Chapter 1: The story you tell about love.", "Contents: Patterns, Needs, Boundaries, Repair"] },
+      { "id": 2, "title": "When Love Hurts", "author": "Neema Otieno", "category": "love", "price": 300, "discount": 10, "shortDescription": "Moving through breakups without losing yourself.", "description": "Gentle, honest steps for the weeks after a relationship ends.", "rating": 4.7, "readers": 980, "tags": ["breakups", "self-love"], "featured": false, "newRelease": true, "pdf": "PRIVATE_STORAGE/when-love-hurts.pdf", "learn": ["Process grief in stages", "Stop the replay loop", "Rebuild routines"], "preview": ["Introduction: It hurts because it mattered.", "Chapter 1: The first 30 days."] },
+      { "id": 3, "title": "The Art of Communication", "author": "Kevin Mwangi", "category": "love", "price": 250, "discount": 0, "shortDescription": "Say what you mean. Hear what they mean.", "description": "Listening, asking and disagreeing without damage.", "rating": 4.6, "readers": 760, "tags": ["communication", "dating"], "featured": false, "newRelease": false, "pdf": "PRIVATE_STORAGE/art-of-communication.pdf", "learn": ["Listen to understand", "Have hard talks calmly"], "preview": ["Introduction: Most fights are misunderstandings."] },
+      { "id": 4, "title": "Before You Fall in Love", "author": "Amani Wekesa", "category": "love", "price": 400, "discount": 0, "shortDescription": "Know yourself first. Choose better after.", "description": "Questions to answer before you commit your heart.", "rating": 4.5, "readers": 530, "tags": ["dating", "marriage"], "featured": false, "newRelease": true, "pdf": "PRIVATE_STORAGE/before-you-fall.pdf", "learn": ["Define your values", "Spot red flags early"], "preview": ["Introduction: Love is a decision too."] },
+      { "id": 5, "title": "The Money Mindset", "author": "Brian Kamau", "category": "wealth", "price": 350, "discount": 0, "shortDescription": "Money isn't only about income. It's about how you think about money.", "description": "Rewire the beliefs that keep you broke, even when you earn.", "rating": 4.9, "readers": 2310, "tags": ["money", "saving", "mindset"], "featured": true, "newRelease": false, "pdf": "PRIVATE_STORAGE/money-mindset.pdf", "learn": ["Understand your money habits", "Build financial discipline", "Identify income opportunities", "Think beyond salary", "Create an action plan"], "preview": ["Introduction: Your first money lesson wasn't in school.", "Chapter 1: The belief behind the balance.", "Contents: Beliefs, Habits, Systems, Growth"] },
+      { "id": 6, "title": "Building Your First Income Stream", "author": "Lucy Njeri", "category": "wealth", "price": 450, "discount": 15, "shortDescription": "From zero to your first shilling.", "description": "A step-by-step path to a second source of income.", "rating": 4.7, "readers": 1480, "tags": ["income", "business", "investing"], "featured": false, "newRelease": true, "pdf": "PRIVATE_STORAGE/first-income.pdf", "learn": ["Pick a skill that sells", "Validate before you spend", "Price and pitch"], "preview": ["Introduction: Salary is one stream."] },
+      { "id": 7, "title": "From Salary to Ownership", "author": "Brian Kamau", "category": "wealth", "price": 500, "discount": 0, "shortDescription": "Stop renting your time. Start owning assets.", "description": "How employees become investors and owners.", "rating": 4.6, "readers": 890, "tags": ["investing", "saving"], "featured": false, "newRelease": false, "pdf": "PRIVATE_STORAGE/salary-ownership.pdf", "learn": ["Budget for investing", "Assets vs liabilities"], "preview": ["Introduction: The paycheck trap."] },
+      { "id": 8, "title": "The Young Entrepreneur", "author": "Lucy Njeri", "category": "wealth", "price": 300, "discount": 0, "shortDescription": "Start small. Learn fast. Grow on purpose.", "description": "Lessons for building a business with little capital.", "rating": 4.5, "readers": 670, "tags": ["entrepreneurship", "business"], "featured": false, "newRelease": false, "pdf": "PRIVATE_STORAGE/young-entrepreneur.pdf", "learn": ["Start with what you have", "Find first customers"], "preview": ["Introduction: Capital is not the first problem."] },
+      { "id": 9, "title": "Discipline Over Motivation", "author": "Joy Achieng", "category": "mindset", "price": 300, "discount": 0, "shortDescription": "Motivation fades. Systems stay.", "description": "Build habits that work on your worst days.", "rating": 4.8, "readers": 1960, "tags": ["habits", "discipline", "productivity"], "featured": true, "newRelease": false, "pdf": "PRIVATE_STORAGE/discipline.pdf", "learn": ["Design a daily system", "Beat procrastination", "Track progress simply"], "preview": ["Introduction: You don't feel like it. Do it anyway.", "Chapter 1: The two-minute start."] },
+      { "id": 10, "title": "The Mind You Need", "author": "Joy Achieng", "category": "mindset", "price": 350, "discount": 10, "shortDescription": "Resilience, confidence and a calmer inner voice.", "description": "Tools for handling doubt, stress and setbacks.", "rating": 4.6, "readers": 820, "tags": ["confidence", "resilience"], "featured": false, "newRelease": true, "pdf": "PRIVATE_STORAGE/mind-you-need.pdf", "learn": ["Quiet self-doubt", "Bounce back faster"], "preview": ["Introduction: The voice you hear most."] },
+      { "id": 11, "title": "Become Who You Said You Would Become", "author": "Samuel Oduor", "category": "mindset", "price": 400, "discount": 0, "shortDescription": "Keep the promises you made to yourself.", "description": "Purpose, identity and follow-through.", "rating": 4.7, "readers": 710, "tags": ["purpose", "self-development"], "featured": false, "newRelease": false, "pdf": "PRIVATE_STORAGE/become.pdf", "learn": ["Clarify your purpose", "Align actions with identity"], "preview": ["Introduction: A letter from future you."] },
+      { "id": 12, "title": "The Psychology of Influence", "author": "Samuel Oduor", "category": "power", "price": 450, "discount": 0, "shortDescription": "Why people say yes, and why they don't.", "description": "Human behavior, persuasion and ethical influence.", "rating": 4.7, "readers": 1120, "tags": ["influence", "negotiation"], "featured": true, "newRelease": false, "pdf": "PRIVATE_STORAGE/influence.pdf", "learn": ["Read people accurately", "Negotiate calmly", "Lead without force"], "preview": ["Introduction: Everyone is persuading someone."] },
+      { "id": 13, "title": "Power & Strategy", "author": "Kevin Mwangi", "category": "power", "price": 500, "discount": 0, "shortDescription": "Decide like someone who plans three moves ahead.", "description": "Strategy and decision-making for everyday life.", "rating": 4.5, "readers": 590, "tags": ["strategy", "decision making"], "featured": false, "newRelease": true, "pdf": "PRIVATE_STORAGE/power-strategy.pdf", "learn": ["Frame decisions", "Anticipate consequences"], "preview": ["Introduction: Power is preparation."] }
+    ]
+      ;</script>
+  <script>// ===== SITE CONFIG — edit here only =====
+    window.CONFIG = {
+      brand: "Pagelight",
+      whatsappNumber: "254721126372", // INSERT WHATSAPP NUMBER (country code, no +)
+      currency: "KSh",
+      bundle: { title: "3 books. 1 journey.", ids: [1, 5, 9], price: 1000 },
+      promoCodes: { READMORE: 100 },   // BACKEND: validate promo codes server-side
+      // BACKEND INTEGRATION POINTS (see README)
+      api: { books: "data/books.json", orders: null, payments: null, download: null }
+    };
+  </script>
+  <script>(() => {
+      const C = window.CONFIG, $ = s => document.querySelector(s), money = n => `${C.currency} ${n.toLocaleString()}`;
+      const CATS = [["all", "All"], ["love", "Love"], ["wealth", "Wealth"], ["mindset", "Mindset"], ["power", "Power"]];
+      const SORTS = [["all", "Recommended"], ["trending", "Trending"], ["new", "New releases"], ["read", "Most read"], ["u500", "Under KSh 500"]];
+      const QUESTIONS = ["Why do I keep repeating the same mistakes?", "How do I build wealth when I'm starting from zero?", "Why do I struggle in relationships?", "How do I become more disciplined?", "What am I actually capable of?"];
+      let books = [], cat = "all", sort = "all", cart = (() => { try { return JSON.parse(localStorage.getItem("cart") || "[]") } catch (e) { return [] } })(), promo = 0;
+      const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const price = b => Math.round(b.price * (1 - b.discount / 100));
+      const cover = b => `<div class="cover ${b.category}"><small>${b.category}</small><b>${esc(b.title)}</b><small>${esc(b.author)}</small></div>`;
+      const save = () => { try { localStorage.setItem("cart", JSON.stringify(cart)); } catch (e) { } $("#cartCount").textContent = cart.reduce((a, i) => a + i.qty, 0); };
+      const wa = text => `https://wa.me/${C.whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+      async function init() {
+        try { books = window.BOOKS; }
+        catch { $("#grid").innerHTML = `<p class="empty">Couldn't load books. Run the site with a local server (see README).</p>`; return; }
+        $("#cats").innerHTML = CATS.map(([k, l]) => `<button class="chip" data-cat="${k}" aria-pressed="${k === "all"}">${l}</button>`).join("");
+        $("#sorts").innerHTML = SORTS.map(([k, l]) => `<button class="chip" data-sort="${k}" aria-pressed="${k === "all"}">${l}</button>`).join("");
+        $("#heroShelf").innerHTML = books.filter(b => b.featured).slice(0, 4).map((b, i) => `<div style="left:${i * 22}%;top:${[10, 50, 0, 40][i]}px;animation-delay:${i}s">${cover(b)}</div>`.replace("<div ", "<div class='slot' ")).join("");
+        document.querySelectorAll(".slot").forEach(s => { const c = s.firstElementChild; c.style.cssText = s.getAttribute("style"); s.replaceWith(c); });
+        const bb = C.bundle, bs = books.filter(b => bb.ids.includes(b.id)), full = bs.reduce((a, b) => a + price(b), 0);
+        $("#bundle").innerHTML = `<div><h2>${bb.title}</h2><p>${bs.map(b => esc(b.title)).join(" + ")}</p></div><div><p class="price">${money(bb.price)} <s>${money(full)}</s></p><button class="btn" id="addBundle">Add bundle</button></div>`;
+        $("#addBundle").onclick = () => { bs.forEach(b => add(b.id)); openCart(); };
+        $("#waFloat").href = $("#waFoot").href = wa("Hello, I have a question about your PDF books.");
+        render(); save(); rotate();
+      }
+      function render() {
+        const q = $("#q").value.trim().toLowerCase();
+        let r = books.filter(b => (cat === "all" || b.category === cat) && (!q || [b.title, b.author, b.category, b.description, ...b.tags].join(" ").toLowerCase().includes(q)));
+        if (sort === "new") r = r.filter(b => b.newRelease); if (sort === "u500") r = r.filter(b => price(b) < 500);
+        if (sort === "read" || sort === "trending") r = [...r].sort((a, b) => b.readers - a.readers);
+        $("#grid").innerHTML = r.length ? r.map(b => `<article class="card">${b.discount ? `<span class="badge">-${b.discount}%</span>` : ""}<div data-open="${b.id}">${cover(b)}</div><h3>${esc(b.title)}</h3><p>${esc(b.shortDescription)}</p><div class="meta"><span>★ ${b.rating}</span><span>${b.readers.toLocaleString()} readers</span></div><div class="price">${money(price(b))}${b.discount ? `<s>${money(b.price)}</s>` : ""}</div><div class="row"><button class="btn ghost" data-open="${b.id}">Preview</button><button class="btn" data-add="${b.id}">Get PDF</button></div></article>`).join("") : `<p class="empty">No books match that yet. Try “money”, “habits” or “love”.</p>`;
+      }
+      function panel(html) { $("#panel").innerHTML = `<button class="btn ghost x" data-close>Close</button>${html}`; $("#panel").hidden = $("#overlay").hidden = false; $("#panel").querySelector("button").focus(); }
+      const close = () => $("#panel").hidden = $("#overlay").hidden = true;
+      function openBook(id) {
+        const b = books.find(x => x.id == id), rec = books.filter(x => x.category === b.category && x.id !== b.id).slice(0, 3);
+        panel(`${cover(b)}<h2>${esc(b.title)}</h2><p>by ${esc(b.author)} · ${b.category}</p><p>${esc(b.description)}</p><h3>What you will learn</h3><ul class="learn">${b.learn.map(l => `<li>${esc(l)}</li>`).join("")}</ul><h3>Free preview</h3>${b.preview.map(p => `<div class="page">${esc(p)}</div>`).join("")}<p><b>Ready for the full story?</b></p><button class="btn" data-add="${b.id}">Get the complete PDF · ${money(price(b))}</button><h3 style="margin-top:24px">If you liked this, you may love these</h3>${rec.map(r => `<p><a href="#" data-open="${r.id}">${esc(r.title)}</a> · ${money(price(r))}</p>`).join("")}`);
+      }
+      function add(id) { const i = cart.find(c => c.id == id); i ? i.qty++ : cart.push({ id: +id, qty: 1 }); save(); }
+      function totals() { const sub = cart.reduce((a, i) => a + price(books.find(b => b.id === i.id)) * i.qty, 0); return { sub, disc: Math.min(promo, sub), total: Math.max(sub - promo, 0) }; }
+      function openCart() {
+        if (!cart.length) return panel(`<h2>Your cart</h2><p class="empty">Nothing here yet. Your next perspective is one click away.</p>`);
+        const t = totals();
+        panel(`<h2>Your cart</h2>${cart.map(i => { const b = books.find(x => x.id === i.id); return `<div class="line"><span>${esc(b.title)} × ${i.qty}</span><span>${money(price(b) * i.qty)} <button class="chip" data-rm="${i.id}" aria-label="Remove ${esc(b.title)}">✕</button></span></div>`; }).join("")}
+  <label>Promo code</label><div class="row"><input id="promo" placeholder="Code"><button class="btn ghost" id="applyPromo">Apply</button></div><p class="err" id="promoMsg"></p>
+  <div class="line"><span>Subtotal</span><span>${money(t.sub)}</span></div><div class="line"><span>Discount</span><span>- ${money(t.disc)}</span></div><div class="tot line"><span>Total</span><span>${money(t.total)}</span></div><button class="btn" id="toCheckout">Checkout</button>`);
+      }
+      function checkout() {
+        const t = totals();
+        panel(`<h2>Order summary</h2>${cart.map(i => { const b = books.find(x => x.id === i.id); return `<div class="line"><span>${esc(b.title)} × ${i.qty}</span><span>${money(price(b) * i.qty)}</span></div>`; }).join("")}<div class="tot line"><span>Total</span><span>${money(t.total)}</span></div>
+  <label>Full name</label><input id="fn" autocomplete="name"><label>Phone number</label><input id="ph" type="tel" autocomplete="tel"><label>Email</label><input id="em" type="email" autocomplete="email">
+  <label>Payment method (confirmed on WhatsApp)</label><select id="pm"><option>M-Pesa</option><option>Card</option><option>PayPal</option></select><label>Message (optional)</label><textarea id="msg" rows="2"></textarea><p class="err" id="err"></p>
+  <button class="btn wa" id="sendWa">Order via WhatsApp</button><p style="color:var(--m);font-size:.9rem;margin-top:10px">This opens WhatsApp with your order. Payment is confirmed manually, then your PDF link is sent.</p>`);
+      }
+      function sendOrder() {
+        const n = $("#fn").value.trim(), p = $("#ph").value.trim(), e = $("#em").value.trim();
+        if (!n || !/^[+\d\s-]{9,15}$/.test(p) || !/^\S+@\S+\.\S+$/.test(e)) return $("#err").textContent = "Enter your name, a valid phone number and a valid email.";
+        const t = totals(), orderId = "ORD-" + Date.now().toString(36).toUpperCase();
+        // BACKEND: POST order to C.api.orders here and use the server-issued order ID.
+        const lines = cart.map(i => { const b = books.find(x => x.id === i.id); return `Book: ${b.title}\nCategory: ${b.category}\nPrice: ${money(price(b))} × ${i.qty}`; }).join("\n\n");
+        const text = `Hello, I would like to purchase a PDF book.\nOrder ID: ${orderId}\n\n${lines}\n\nTotal: ${money(t.total)}\nPayment: ${$("#pm").value}\nName: ${n}\nPhone: ${p}\nEmail: ${e}\n${$("#msg").value ? "Note: " + $("#msg").value + "\n" : ""}\nPlease guide me through payment and delivery.`;
+        window.open(wa(text), "_blank", "noopener"); cart = []; promo = 0; save(); panel(`<h2>Almost there</h2><p>Your order ${orderId} is ready in WhatsApp. Send it, pay as instructed, and your PDF link arrives after confirmation.</p>`);
+      }
+      let qi = 0; function rotate() { const el = $("#question"); const go = () => { el.style.opacity = 0; setTimeout(() => { el.textContent = `“${QUESTIONS[qi++ % QUESTIONS.length]}”`; el.style.opacity = 1; }, 400); }; go(); setInterval(go, 3500); }
+
+      document.addEventListener("click", e => {
+        const t = e.target.closest("button,a,[data-open]"); if (!t) return; const d = t.dataset;
+        if (d.cat) { cat = d.cat; document.querySelectorAll("[data-cat]").forEach(c => c.setAttribute("aria-pressed", c === t)); render(); }
+        if (d.sort) { sort = d.sort; document.querySelectorAll("[data-sort]").forEach(c => c.setAttribute("aria-pressed", c === t)); render(); }
+        if (d.open) { e.preventDefault(); openBook(d.open); }
+        if (d.add) { add(d.add); openCart(); }
+        if (d.rm) { cart = cart.filter(i => i.id != d.rm); save(); openCart(); }
+        if (d.close !== undefined || t.id === "overlay") close();
+        if (t.id === "cartBtn") openCart();
+        if (t.id === "toCheckout") checkout();
+        if (t.id === "sendWa") sendOrder();
+        if (t.id === "applyPromo") { const v = C.promoCodes[$("#promo").value.trim().toUpperCase()]; if (v) { promo = v; openCart(); } else $("#promoMsg").textContent = "That code isn't valid."; }
+      });
+      $("#overlay").onclick = close; $("#q").addEventListener("input", render);
+      document.addEventListener("keydown", e => e.key === "Escape" && close());
+      init();
+    })();
+  </script>
+</body>
+
+</html>
